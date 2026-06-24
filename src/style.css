@@ -418,10 +418,10 @@ body {
    FOOTER
    ============================== */
 .site-footer {
-  background-color: var(--text-color);
-  color: var(--bg-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
   padding: 3rem;
-  border-top: 1px solid rgba(244, 243, 240, 0.08);
+  border-top: 1px solid rgba(18, 18, 18, 0.1);
 }
 
 .footer-top {
@@ -445,7 +445,7 @@ body {
 }
 
 .footer-links a {
-  color: var(--bg-color);
+  color: var(--text-color);
   text-decoration: none;
   font-family: var(--font-body);
   font-size: 0.85rem;
