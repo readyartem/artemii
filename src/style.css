@@ -323,23 +323,21 @@ body {
    NAV BLOCKS
    ============================== */
 .nav-blocks {
-  background-color: var(--text-color);
-  color: var(--bg-color);
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
 }
 
 .nav-block {
   position: relative;
-  display: block;
+  height: 100vh;
   text-decoration: none;
   color: inherit;
   border-top: 1px solid rgba(244, 243, 240, 0.1);
-  padding: 0 3rem;
-  height: 33.34vh;
-  min-height: 180px;
   overflow: hidden;
-  transition: background-color 0.5s ease;
+  background-color: var(--bg-color);
+  transition: background-color 0.4s ease;
 }
 
 .nav-block:last-child {
