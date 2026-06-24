@@ -347,13 +347,14 @@ body {
 .nav-block::before {
   content: attr(data-index);
   position: absolute;
-  top: 2.5rem;
+  top: 3rem;
   left: 3rem;
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 400;
   opacity: 0.3;
   letter-spacing: 0.05em;
+  z-index: 2;
 }
 
 /* Simple hover — just a subtle tint */
@@ -372,37 +373,75 @@ body {
 }
 
 .nav-block-inner {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  padding-left: 2rem;
-  padding-right: 8rem;
 }
 
-.nav-block-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  flex-shrink: 0;
+.nav-block-label {
+  position: absolute;
+  top: 3rem;
+  left: 6rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  opacity: 0.35;
+  z-index: 2;
 }
 
-.nav-block-right {
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
+.nav-block-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 16vw;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0;
+  white-space: nowrap;
+  opacity: 0.03;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.nav-block:hover .nav-block-title {
+  opacity: 0.07;
+}
+
+.nav-block-arrow {
+  position: absolute;
+  right: 3rem;
+  bottom: 3rem;
+  font-size: 2rem;
+  font-weight: 300;
+  opacity: 0.3;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.nav-block:hover .nav-block-arrow {
+  transform: translateX(10px);
+  opacity: 0.7;
 }
 
 /* About Content */
+.about-content {
+  position: absolute;
+  bottom: 4rem;
+  right: 4rem;
+  z-index: 2;
+}
+
 .about-content p {
   font-family: var(--font-body);
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1.5rem;
+  line-height: 1.5;
   font-weight: 300;
-  max-width: 500px;
+  max-width: 450px;
   color: var(--text-color);
   opacity: 0.5;
   transition: opacity 0.4s ease;
@@ -416,18 +455,22 @@ body {
 
 /* Work Gallery */
 .work-gallery {
-  position: relative;
-  height: 140px;
-  width: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 200px;
+  width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .work-img-wrapper {
   position: absolute;
-  width: 160px;
-  height: 110px;
+  width: 200px;
+  height: 140px;
   background: var(--bg-color);
   border: 1px solid rgba(244, 243, 240, 0.1);
   border-radius: 6px;
@@ -446,23 +489,31 @@ body {
 
 .nav-block:hover .work-img-wrapper {
   opacity: 1;
-  transform: rotate(calc((var(--i) - 1) * 15deg)) translateX(calc((var(--i) - 1) * 45px)) translateY(calc(abs(var(--i) - 1) * 10px));
+  transform: rotate(calc((var(--i) - 1) * 15deg)) translateX(calc((var(--i) - 1) * 60px)) translateY(calc(abs(var(--i) - 1) * 10px));
 }
 
-/* Contact Pills */
+/* Contact Content */
+.contact-content {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
 .contact-pills {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .contact-pill {
-  padding: 0.8rem 1.5rem;
+  padding: 1rem 2rem;
   border-radius: 100px;
   border: 1px solid rgba(244, 243, 240, 0.15);
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
@@ -675,27 +726,43 @@ body {
 
   /* Nav blocks mobile */
   .nav-block {
-    padding: 0 1.5rem;
-    height: auto;
-    min-height: 140px;
-  }
-  .nav-block::before {
-    left: 1.5rem;
-    top: 1.5rem;
-  }
-  .nav-block-inner {
-    padding-left: 1.5rem;
-  }
-  .nav-block-title {
-    font-size: 14vw;
+    height: 100vh;
   }
   .nav-block-label {
-    left: 3.5rem;
-    top: 1.5rem;
+    top: 2rem;
+    left: 2rem;
+  }
+  .nav-block::before {
+    left: 2rem;
+    top: 2rem;
+  }
+  .nav-block-title {
+    font-size: 15vw;
   }
   .nav-block-arrow {
-    right: 1.5rem;
+    bottom: 2rem;
+    right: 2rem;
   }
+  
+  /* Scale unique content for mobile */
+  .about-content {
+    bottom: 2rem;
+    right: 2rem;
+    left: 2rem;
+  }
+  .about-content p {
+    font-size: 1rem;
+    max-width: 100%;
+    text-align: left;
+  }
+  .work-gallery {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  .contact-content {
+    bottom: 2rem;
+    width: 90%;
+  }
+
   .site-footer {
     padding: 4rem 1.5rem 2rem;
   }
