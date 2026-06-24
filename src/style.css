@@ -320,69 +320,37 @@ body {
 }
 
 /* ==============================
-   ABOUT SECTION
+   NAV BLOCKS
    ============================== */
-.about-section {
+.nav-blocks {
   background-color: var(--text-color);
   color: var(--bg-color);
-  min-height: 100vh;
-  padding: 8rem 3rem 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.about-bio {
-  margin-bottom: 4rem;
-}
-
-.about-label {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  opacity: 0.4;
-  letter-spacing: 0.08em;
-  margin-bottom: 2rem;
-}
-
-.about-statement {
-  font-family: var(--font-display);
-  font-size: 3.5vw;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  max-width: 70%;
-  margin: 0;
-}
-
-.about-bottom {
-  margin-top: auto;
-}
-
-.about-timeline {
   display: flex;
   flex-direction: column;
 }
 
-.timeline-item {
+.nav-block {
   position: relative;
   display: block;
+  text-decoration: none;
   color: inherit;
-  border-top: 1px solid rgba(244, 243, 240, 0.12);
-  padding: 2rem 0;
-  padding-left: 3rem;
+  border-top: 1px solid rgba(244, 243, 240, 0.1);
+  padding: 0 3rem;
+  height: 33.34vh;
+  min-height: 180px;
+  overflow: hidden;
+  transition: background-color 0.5s ease;
 }
 
-.timeline-item:last-child {
-  border-bottom: 1px solid rgba(244, 243, 240, 0.12);
+.nav-block:last-child {
+  border-bottom: 1px solid rgba(244, 243, 240, 0.1);
 }
 
-.timeline-item::before {
+.nav-block::before {
   content: attr(data-index);
   position: absolute;
-  left: 0;
-  top: 2.2rem;
+  top: 2.5rem;
+  left: 3rem;
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 400;
@@ -390,107 +358,80 @@ body {
   letter-spacing: 0.05em;
 }
 
-
-.timeline-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 2rem;
+/* Background fill on hover */
+.nav-block::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(244, 243, 240, 0.06);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
 }
 
-.timeline-company {
+.nav-block:hover::after {
+  transform: scaleY(1);
+}
+
+.nav-block-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 2rem;
+}
+
+.nav-block-label {
+  position: absolute;
+  top: 2.5rem;
+  left: 5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-block:hover .nav-block-label {
+  opacity: 0.5;
+  transform: translateY(0);
+}
+
+.nav-block-title {
   font-family: var(--font-display);
-  font-size: 4vw;
+  font-size: 8vw;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   line-height: 1;
-}
-.timeline-date {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  opacity: 0.4;
-  white-space: nowrap;
-  flex-shrink: 0;
+  margin: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              letter-spacing 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.timeline-expand {
-  padding-top: 1.5rem;
-}
-
-.timeline-role {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 500;
-  opacity: 0.7;
+.nav-block:hover .nav-block-title {
+  transform: translateX(1.5rem);
   letter-spacing: 0.02em;
 }
 
-.timeline-desc {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  opacity: 0.45;
-  font-weight: 400;
-  margin-top: 0.8rem;
-  max-width: 50%;
+.nav-block-arrow {
+  position: absolute;
+  right: 3rem;
+  font-size: 2rem;
+  font-weight: 300;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ==============================
-   FOOTER SECTION
-   ============================== */
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60vh; /* Adjust as needed */
-  z-index: 1; /* Below main-wrap */
-  background-color: #121212;
-  color: #f4f3f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.footer-content {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-
-.footer-title {
-  font-family: var(--font-display);
-  font-size: 10vw;
-  font-weight: 800;
-  line-height: 0.8;
-  letter-spacing: -0.04em;
-  margin: 0;
-}
-
-.footer-links {
-  display: flex;
-  gap: 3rem;
-}
-
-.footer-links a {
-  color: #f4f3f0;
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.footer-copyright {
-  font-family: var(--font-body);
-  opacity: 0.5;
-  margin-top: 2rem;
+.nav-block:hover .nav-block-arrow {
+  opacity: 0.6;
+  transform: translateX(0);
 }
 
 /* ==============================
@@ -511,11 +452,11 @@ body {
   .hero-title {
     font-size: 10.5vw;
   }
-  .about-section {
-    padding: 6rem 2rem;
+  .nav-block {
+    padding: 0 2rem;
   }
-  .timeline-company {
-    font-size: 5vw;
+  .nav-block-title {
+    font-size: 10vw;
   }
 }
 
@@ -554,30 +495,27 @@ body {
     transform: translateY(20px); 
   }
 
-  /* Timeline mobile */
-  .about-section {
-    padding: 5rem 1.5rem;
-    min-height: auto;
+  /* Nav blocks mobile */
+  .nav-block {
+    padding: 0 1.5rem;
+    height: auto;
+    min-height: 140px;
   }
-  .timeline-item {
-    padding: 2rem 0;
-    padding-left: 2.5rem;
-    cursor: pointer;
+  .nav-block::before {
+    left: 1.5rem;
+    top: 1.5rem;
   }
-  .timeline-item::before {
-    top: 2.2rem;
+  .nav-block-inner {
+    padding-left: 1.5rem;
   }
-  .timeline-header {
-    flex-direction: column;
-    gap: 0.5rem;
+  .nav-block-title {
+    font-size: 14vw;
   }
-  .timeline-company {
-    font-size: 8vw;
+  .nav-block-label {
+    left: 3.5rem;
+    top: 1.5rem;
   }
-  .timeline-date {
-    font-size: 0.75rem;
-  }
-  .timeline-desc {
-    max-width: 100%;
+  .nav-block-arrow {
+    right: 1.5rem;
   }
 }

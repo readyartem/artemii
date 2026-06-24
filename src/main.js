@@ -146,21 +146,21 @@ if (logoAsteriskNode) {
   });
 }
 
-// Hide timeline items immediately (prevents flash before animation)
-gsap.set('.timeline-item', { opacity: 0, y: 60 });
+// Hide nav blocks immediately (prevents flash before animation)
+gsap.set('.nav-block', { opacity: 0, y: 40 });
 
-// ScrollTrigger Animations for About Section
+// ScrollTrigger Animations
 function initScrollAnimations() {
-  gsap.to('.timeline-item', {
+  gsap.to('.nav-block', {
     scrollTrigger: {
-      trigger: ".about-section",
+      trigger: ".nav-blocks",
       start: "top 95%",
       toggleActions: "play none none none"
     },
     y: 0,
     opacity: 1,
     duration: 1.2,
-    stagger: 0.15,
+    stagger: 0.12,
     ease: "power4.out"
   });
 }
