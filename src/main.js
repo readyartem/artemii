@@ -146,22 +146,23 @@ if (logoAsteriskNode) {
   });
 }
 
-// Hide nav blocks immediately (prevents flash before animation)
-gsap.set('.nav-block', { opacity: 0, y: 40 });
+// Hide C2 sections initially (prevents flash before animation)
+gsap.set('.c2-section', { opacity: 0, y: 60 });
 
 // ScrollTrigger Animations
 function initScrollAnimations() {
-  gsap.to('.nav-block', {
-    scrollTrigger: {
-      trigger: ".nav-blocks",
-      start: "top 95%",
-      toggleActions: "play none none none"
-    },
-    y: 0,
-    opacity: 1,
-    duration: 1.2,
-    stagger: 0.12,
-    ease: "power4.out"
+  document.querySelectorAll('.c2-section').forEach(section => {
+    gsap.to(section, {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 85%",
+        toggleActions: "play none none none"
+      },
+      y: 0,
+      opacity: 1,
+      duration: 1.4,
+      ease: "power4.out"
+    });
   });
 }
 
@@ -172,21 +173,9 @@ const scrollLink = document.querySelector('.scroll-down');
 if (scrollLink) {
   scrollLink.addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('#work').scrollIntoView({ behavior: 'smooth' });
   });
 }
-
-// Timeline click-to-expand (mobile)
-document.querySelectorAll('.timeline-item').forEach(item => {
-  item.addEventListener('click', () => {
-    if (window.innerWidth > 768) return; // Only on mobile
-    const isActive = item.classList.contains('active');
-    // Close all
-    document.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('active'));
-    // Toggle clicked
-    if (!isActive) item.classList.add('active');
-  });
-});
 
 // Dynamic Sticky Footer Reveal Margin
 function updateFooterMargin() {
